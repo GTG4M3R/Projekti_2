@@ -1,0 +1,87 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+  color: #000;
+  background-color: #fff;
+}
+
+.container {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 6px;
+}
+
+/* Hakuelementit samalle riville */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  font-size: 18px;
+}
+
+label {
+  font-weight: bold;
+}
+
+select {
+  font-size: 18px;
+  padding: 4px 8px;
+  border: 1px solid #767676;
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+button {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 12px;
+  background-color: #e1e1e1;
+  border: 1px solid #767676;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #d0d0d0;
+}
+
+.updated-time {
+  margin-left: auto;
+  color: #555;
+  font-size: 18px;
+}
+
+/* Taulukon muotoilu */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 20px;
+}
+
+th, td {
+  border: 1px solid #b0b0b0;
+  padding: 10px 14px;
+}
+
+th {
+  background-color: #e6e6e6;
+  font-weight: bold;
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}
+
+td.destination {
+  text-align: left;
+}
