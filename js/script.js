@@ -28,6 +28,7 @@ nappi.addEventListener("click", function () {
       const junat = JSON.parse(xmlhttp.responseText);
 
       console.log("Haetut junat:", junat);
+      näytäLähdöt(junat);
 
       // Kellonajan päivitys
       const nyt = new Date();
@@ -52,3 +53,28 @@ nappi.addEventListener("click", function () {
 
   xmlhttp.send();
 });
+
+  // Haettujen junien tunnukset taulukossa (IC, P, K, R, Z jne.)
+function näytäLähdöt(junat) {
+  taulukko.innerHTML = "";
+
+  for (let i = 0; i < junat.length; i++) {
+    const juna = junat[i];
+
+    if (!juna.cancelled) {
+      let tunnus = juna.trainType + " " + juna.trainNumber;
+
+      if (juna.commuterLineID) {
+        tunnus = juna.commuterLineID;
+      }
+
+      const rivi = taulukko.insertRow(-1);
+
+      rivi.insertCell(0).textContent = "–";
+      rivi.insertCell(1).textContent = tunnus;
+      rivi.insertCell(2).textContent = "–";
+      rivi.insertCell(3).textContent = "–";
+    }
+  }
+}
+
