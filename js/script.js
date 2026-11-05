@@ -4,11 +4,11 @@ const nappi = document.getElementById("search-btn");
 const päivitetty = document.getElementById("updated-time");
 const taulukko = document.getElementById("timetable-body");
 
-// Napin klikkaustoiminto, hakee valitun aseman junat
+// Napin klikkaustoiminto, valittu asema
 nappi.addEventListener("click", function () {
   const valittuAsema = asema.value;
 
-  // Hakee Digitraffic API:sta valitun aseman junat
+  // Hakee Digitraffic API:sta valitun aseman junat napin klikkauksen jälkeen
   const osoite =
     "https://rata.digitraffic.fi/api/v1/live-trains/station/" +
     valittuAsema +

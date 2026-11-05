@@ -1,4 +1,4 @@
-# Projektin nimi
+# Junalähdöt sovellus
 
 **Tekijä(t):** Eetu Pyykkö & Emil Salmenkylä
 
@@ -6,15 +6,15 @@
 
 ### Projektin idea
 
-Kuvaile lyhyesti, mitä sovelluksesi tekee ja kenelle se on tarkoitettu.
+Junalähdöt sovellus projektin ideana on päivittyvä taulukko, joka hakee Digitraffic API.lla juna-aseman lähtevien junien tiedot.
 
 ### Suunnitellut toiminnot
 
 Listaa vähintään kolme sovellukseesi suunniteltua toimintoa:
 
-- Toiminto 1
-- Toiminto 2
-- Toiminto 3
+- Kellon aika, jotta käyttäjä voi verrata tämän hetkistä aikaa junan lähtöaikaan
+- Asema valitsin, voi valita miltä juna-asemalta tiedot haetaan
+- Automaattinen taulukon päivitys tietyn välein
 
 ### Rautalankamalli / luonnos
 
@@ -28,7 +28,7 @@ Listaa vähintään kolme sovellukseesi suunniteltua toimintoa:
 
 ## Tietoja sovelluksesta
 
-**[Projektin nimi]** on verkkosovellus, joka ...
+**[Junalähdöt]** on verkkosovellus, joka ...
 
 Kuvaile lyhyesti sovelluksen tarkoitus ja tärkeimmät toiminnot.
 
@@ -76,8 +76,14 @@ Jos tunnettuja virheitä ei ole, kirjoita: **Ei tunnettuja virheitä.**
 
 Kuvaile, miten työ jakautui ja miten yhteistyö sujui.
 
-- Tekijä 1: ...
-- Tekijä 2: ...
+- Tekijä 1: Eetu Pyykkö
+  - Rautalankamallin suunnittelu
+  - JS kello, napin toiminnallisuus, juna tunnusten haku API:sta
+  - 
+
+- Tekijä 2: Emil Salmenkylä
+  - Index html ja CSS aloitus rautalankamallin perusteella
+  - 
 
 ## Oma arvio ja oppimisen reflektointi
 
