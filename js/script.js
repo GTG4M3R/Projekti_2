@@ -60,6 +60,9 @@ nappi.addEventListener("click", function () {
 function näytäLähdöt(junat, asemaKoodi) {
   taulukko.innerHTML = "";
 
+  // Järjestetään lähtöajan mukaan
+  järjestäLähdöt(junat, asemaKoodi);
+
   for (let i = 0; i < junat.length; i++) {
     const juna = junat[i];
 
@@ -110,4 +113,28 @@ function etsiLähtö(juna, asemaKoodi) {
 
   // Jos sopivaa lähtöä ei löytynyt, ei lisää riviä taulukkoon
   return null;
+}
+
+// Aseman lähtöjen järjestys lähtöajan mukaan
+function järjestäLähdöt(junat, asemaKoodi) {
+  for (let i = 0; i < junat.length; i++) {
+    for (let j = i + 1; j < junat.length; j++) {
+      const lähtö1 = etsiLähtö(junat[i], asemaKoodi);
+      const lähtö2 = etsiLähtö(junat[j], asemaKoodi);
+
+      // Lähtöaikojen vertailu jos molemmille junille löytyi lähtö
+      if (lähtö1 !== null && lähtö2 !== null) {
+        // Lähtöaikojen muuttaminen vertailtavaan muotoon
+        const aika1 = new Date(lähtö1.scheduledTime);
+        const aika2 = new Date(lähtö2.scheduledTime);
+
+        // Junien järjestys jos toinen lähtee aikaisemmin
+        if (aika1 > aika2) {
+          const apu = junat[i];
+          junat[i] = junat[j];
+          junat[j] = apu;
+        }
+      }
+    }
+  }
 }
