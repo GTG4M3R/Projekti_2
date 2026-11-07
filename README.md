@@ -78,7 +78,7 @@ Kuvaile, miten työ jakautui ja miten yhteistyö sujui.
 
 - Tekijä 1: Eetu Pyykkö
   - Rautalankamallin suunnittelu
-  - JS kello, napin toiminnallisuus, juna tunnusten haku API:sta
+  - JS kello, napin toiminnallisuus, juna tunnusten ja lähtöaikojen haku Digitrafic API:sta
   - 
 
 - Tekijä 2: Emil Salmenkylä

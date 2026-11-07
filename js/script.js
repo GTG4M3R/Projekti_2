@@ -28,7 +28,9 @@ nappi.addEventListener("click", function () {
       const junat = JSON.parse(xmlhttp.responseText);
 
       console.log("Haetut junat:", junat);
-      näytäLähdöt(junat);
+
+      // Annetaan funktiolle myös valittu asema
+      näytäLähdöt(junat, valittuAsema);
 
       // Kellonajan päivitys
       const nyt = new Date();
@@ -54,14 +56,25 @@ nappi.addEventListener("click", function () {
   xmlhttp.send();
 });
 
-  // Haettujen junien tunnukset taulukossa (IC, P, K, R, Z jne.)
-function näytäLähdöt(junat) {
+// Haettujen junien tunnukset + lähtöajat taulukossa
+function näytäLähdöt(junat, asemaKoodi) {
   taulukko.innerHTML = "";
 
   for (let i = 0; i < junat.length; i++) {
     const juna = junat[i];
 
-    if (!juna.cancelled) {
+    // Juna lähdön etsiminen valitulta asemalta
+    const lähtö = etsiLähtö(juna, asemaKoodi);
+
+    // Näytetään juna, jos sitä ei ole peruttu ja lähtö löytyi
+    if (!juna.cancelled && lähtö !== null) {
+      // Muutetaan aikataulun lähtöaika Suomen kellonajaksi
+      const lähtöaika = new Date(lähtö.scheduledTime).toLocaleTimeString("fi-FI", {
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "Europe/Helsinki"
+      });
+
       let tunnus = juna.trainType + " " + juna.trainNumber;
 
       if (juna.commuterLineID) {
@@ -70,7 +83,7 @@ function näytäLähdöt(junat) {
 
       const rivi = taulukko.insertRow(-1);
 
-      rivi.insertCell(0).textContent = "–";
+      rivi.insertCell(0).textContent = lähtöaika;
       rivi.insertCell(1).textContent = tunnus;
       rivi.insertCell(2).textContent = "–";
       rivi.insertCell(3).textContent = "–";
@@ -78,3 +91,23 @@ function näytäLähdöt(junat) {
   }
 }
 
+// Seuraavan juna lähdön etsiminen valitulta asemalta
+function etsiLähtö(juna, asemaKoodi) {
+  for (let i = 0; i < juna.timeTableRows.length; i++) {
+    const pysähdys = juna.timeTableRows[i];
+
+    // Etsitään valitulta asemalta lähtö, joka on vielä tulossa ja jota ei ole peruttu.
+    if (
+      pysähdys.stationShortCode === asemaKoodi &&
+      pysähdys.type === "DEPARTURE" &&
+      pysähdys.commercialStop &&
+      !pysähdys.actualTime &&
+      !pysähdys.cancelled
+    ) {
+      return pysähdys;
+    }
+  }
+
+  // Jos sopivaa lähtöä ei löytynyt, ei lisää riviä taulukkoon
+  return null;
+}
