@@ -83,7 +83,7 @@ Kuvaile, miten työ jakautui ja miten yhteistyö sujui.
 
 - Tekijä 2: Emil Salmenkylä
   - Index html ja CSS aloitus rautalankamallin perusteella
-  - 
+  - Määränpäät ja raiteiden haku Digitrafic API:sta
 
 ## Oma arvio ja oppimisen reflektointi
 
