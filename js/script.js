@@ -1,10 +1,16 @@
-// Elementtien haku
+// Elementtien haku DOM-puusta
 const asema = document.getElementById("station-select");
 const nappi = document.getElementById("search-btn");
 const päivitetty = document.getElementById("updated-time");
 const taulukko = document.getElementById("timetable-body");
 
-// Napin klikkaustoiminto, valittu asema
+// Sanakirja asemien kokonaisille nimille (esim. asemat["LH"] = "Lahti")
+let asemat = {};
+
+// Haetaan asemien nimet muistiin heti sivun latautuessa
+haeAsemat();
+
+// Napin klikkaustoiminto
 nappi.addEventListener("click", function () {
   const valittuAsema = asema.value;
 
@@ -34,7 +40,6 @@ nappi.addEventListener("click", function () {
 
       // Kellonajan päivitys
       const nyt = new Date();
-
       const kellonaika = nyt.toLocaleTimeString("fi-FI", {
         hour: "2-digit",
         minute: "2-digit",
@@ -50,7 +55,7 @@ nappi.addEventListener("click", function () {
 
   // Virheviesti jos ei yhteyttä
   xmlhttp.onerror = function () {
-    päivitetty.textContent = "Haku epäonnistui: " + xmlhttp.status;
+    päivitetty.textContent = "Haku epäonnistui (verkkovirhe).";
   };
 
   xmlhttp.send();
@@ -84,12 +89,28 @@ function näytäLähdöt(junat, asemaKoodi) {
         tunnus = juna.commuterLineID;
       }
 
+      // Määränpään haku (Junan reitin viimeinen asema)
+      const vikaPysähdys = juna.timeTableRows[juna.timeTableRows.length - 1];
+      const määränpääKoodi = vikaPysähdys.stationShortCode;
+      const määränpääNimi = asemat[määränpääKoodi] || määränpääKoodi;
+
+      // Luodaan taulukkorivi
       const rivi = taulukko.insertRow(-1);
 
+      // Solu 0: Lähtöaika
       rivi.insertCell(0).textContent = lähtöaika;
+      
+      // Solu 1: Juna
       rivi.insertCell(1).textContent = tunnus;
-      rivi.insertCell(2).textContent = "–";
-      rivi.insertCell(3).textContent = "–";
+      
+      // Solu 2: Määränpää (koko nimi)
+      const määränpääSolu = rivi.insertCell(2);
+      määränpääSolu.textContent = määränpääNimi;
+      määränpääSolu.className = "destination";
+
+      // Solu 3: Raide
+      const raide = lähtö.commercialTrack || "–";
+      rivi.insertCell(3).textContent = raide;
     }
   }
 }
@@ -137,4 +158,26 @@ function järjestäLähdöt(junat, asemaKoodi) {
       }
     }
   }
+}
+
+// Haetaan asemien metatiedot API:sta nimitietojen muuntamista varten
+function haeAsemat() {
+  const xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", "https://rata.digitraffic.fi/api/v1/metadata/stations", true);
+
+  xmlhttp.onload = function () {
+    if (xmlhttp.status === 200) {
+      const asemalista = JSON.parse(xmlhttp.responseText);
+
+      // Tallennetaan asemien nimipari (koodi -> nimi)
+      for (let i = 0; i < asemalista.length; i++) {
+        const asemaObj = asemalista[i];
+        // Poistetaan " asema" nimestä siistiyden vuoksi (esim. "Lahti asema" -> "Lahti")
+        const nimi = asemaObj.stationName.replace(" asema", "");
+        asemat[asemaObj.stationShortCode] = nimi;
+      }
+    }
+  };
+
+  xmlhttp.send();
 }
