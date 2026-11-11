@@ -6,15 +6,13 @@
 
 ### Projektin idea
 
-Junalähdöt sovellus projektin ideana on päivittyvä taulukko, joka hakee Digitraffic API.lla juna-aseman lähtevien junien tiedot.
+Junalähdöt sovellus projektin ideana on päivittyvä taulukko, joka hakee Digitraffic API:lla valitun juna-aseman lähtevien junien tiedot.
 
 ### Suunnitellut toiminnot
 
-Listaa vähintään kolme sovellukseesi suunniteltua toimintoa:
-
 - Kellon aika, jotta käyttäjä voi verrata tämän hetkistä aikaa junan lähtöaikaan
 - Asema valitsin, voi valita miltä juna-asemalta tiedot haetaan
-- Automaattinen taulukon päivitys tietyn välein
+- Automaattinen taulukon päivitys minuutin välein
 
 ### Rautalankamalli / luonnos
 
@@ -22,33 +20,32 @@ Listaa vähintään kolme sovellukseesi suunniteltua toimintoa:
 
 ## Verkkolinkit
 
-- **Julkaistu sovellus:** [Lisää tähän GitHub Pages -osoite](https://yourusername.github.io/your-repository/)
-- **GitHub-repositorio:** [Lisää tähän repositorion osoite](https://github.com/yourusername/your-repository)
-- **Projektin videoesittely:** [Lisää tähän videon osoite](https://example.com/)
+- **Julkaistu sovellus:** [https://gtg4m3r.github.io/Projekti_2/](https://gtg4m3r.github.io/Projekti_2/)
+- **GitHub-repositorio:** [https://github.com/GTG4M3R/Projekti_2](https://github.com/GTG4M3R/Projekti_2)
 
 ## Tietoja sovelluksesta
 
-**[Junalähdöt]** on verkkosovellus, joka ...
-
-Kuvaile lyhyesti sovelluksen tarkoitus ja tärkeimmät toiminnot.
+**[Junalähdöt]** on verkkosovellus, josta käyttäjä voi seurata junien tietoja. Käyttäjä voi valita neljästä asemasta: Helsinki, Pasila, Tikkurila ja Leppävaara, jonka jälkeen hän näkee Junan X lähtö kellonajan, raiteen ja määränpään.
 
 ## Teknologiat
 
-Kuvaile, mitä teknologioita käytit ja mikä niiden rooli oli projektissasi.
-
 - HTML – sivun rakenne
+  - Sovellus on rakennettu pitkälti taulukon pohjalle. Kaikki sovelluksen oleelliset tiedot löytyvät taulukon soluista
+
 - CSS – ulkoasu ja asettelu
+  - CSS tyylit ja sovelluksen asettelu on määritetty
+
 - JavaScript – toiminnallisuus, DOM-skriptaus ja lomakkeiden validointi
-- localStorage – tietojen tallentaminen selaimeen, jos käytit sitä
+  - Javascript projektin pääosassa, ilman sitä ei olisi minkäänlaista toiminnallisuutta
 
 ## Sovelluksen käyttö
 
 Kirjoita lyhyet käyttöohjeet sovellukselle.
 
 1. Avaa julkaistu sovellus yllä olevasta linkistä.
-2. Täytä lomakkeen kentät.
-3. Lisää, muokkaa, poista tai merkitse kohteita tehdyiksi.
-4. Päivitä sivu ja tarkista, säilyvätkö tiedot selaimessa, jos käytit localStoragea.
+2. Valitse alasveto valikosta haluttu juna-asema.
+3. Paina "Näytä lähdöt" -painiketta.
+4. Sivulla tulisi nyt olla valitun juna-aseman tiedot. Sivu päivittyy automaattisesti minuutin välein.
 
 ## Sovelluksen käynnistäminen paikallisesti
 
@@ -58,54 +55,50 @@ Kirjoita lyhyet käyttöohjeet sovellukselle.
 
 ## Kuvakaappaukset
 
-Lisää tähän vähintään yksi kuvakaappaus toimivasta sovelluksestasi.
-
-Esimerkki kuvan lisäämisestä:
-
-![Kuvakaappaus sovelluksesta](img/screenshot.png)
+![Kuvakaappaus sovelluksesta](IMG/Sovellus.png)
 
 ## Tunnetut virheet / puutteet
 
-Kerro, jos sovelluksessa on tunnettuja virheitä, puuttuvia toimintoja tai muita rajoituksia.
-
-Jos tunnettuja virheitä ei ole, kirjoita: **Ei tunnettuja virheitä.**
+**Ei tunnettuja virheitä.**
 
 ## Työn jakautuminen
 
-*Täytä tämä osio vain, jos teit projektin parityönä.*
-
-Kuvaile, miten työ jakautui ja miten yhteistyö sujui.
+Työn jakautuminen ja yhteistyö.
 
 - Tekijä 1: Eetu Pyykkö
   - Rautalankamallin suunnittelu
-  - JS kello, napin toiminnallisuus, juna tunnusten ja lähtöaikojen haku Digitrafic API:sta
-  - 
+  - JavaSript: kello, "Näytä lähdöt" napin toiminnallisuus, juna tunnusten ja lähtöaikojen haku Digitrafic API:sta
+  - README.md pitkälti
 
 - Tekijä 2: Emil Salmenkylä
   - Index html ja CSS aloitus rautalankamallin perusteella
   - Määränpäät ja raiteiden haku Digitrafic API:sta
+  - Automaattinen sivun päivitys minuutin välein
+
+Yhteistyö sujui ongelmitta. Sovittiin, kuka tekee mitäkin. Olimme kokoajan yhteydessä toisiin Discordin välityksellä, vaikka sovimme työnjaon. Kysyimme toisen apua ja mielipidettä lähes aina ennen commit. Kommunikointi auttoi myös siinä, etteivät molemmat olleet muokkaamassa samaa tiedostoa samaan aikaan.
 
 ## Oma arvio ja oppimisen reflektointi
 
-Pohdi työtäsi ja oppimisprosessiasi.
-
-- Missä onnistuin?
-- Mikä oli haastavaa?
-- Mitä parantaisin, jos aikaa olisi enemmän?
-- Mitä opin HTML:stä, CSS:stä, JavaScriptistä ja DOM-skriptauksesta?
-- Mikä jäi epäselväksi tai mistä haluaisin oppia lisää?
-- Oma arvio projektista: **xx/10 pistettä**
+- **Missä onnistuin?** Sain API-haun toimimaan ja junien lähdöt selkeään taulukkoon.
+- **Mikä oli haastavaa?** API-datan käsittely ja oikeiden lähtötietojen poimiminen.
+- **Mitä parantaisin?** Lisäisin hakukentän ja testaisin sivua useammalla laitteella.
+- **Mitä opin?** HTML:n rakennetta, CSS:n responsiivisuutta, JavaScriptin API-hakuja ja taulukon päivittämistä DOM:n avulla.
+- **Mistä haluaisin oppia lisää?** API-hakujen ajoituksesta ja virheenkäsittelystä.
+- **Oma arvio projektista: 8/10 pistettä.**
 
 ## Lähteet ja kiitokset
 
-Listaa kaikki projektissa käyttämäsi lähteet, tutoriaalit, kuvat ja koodiesimerkit.
+## Lähteet
 
-Jos käytit ChatGPT:tä, GitHub Copilotia tai muuta tekoälytyökalua, mainitse se tässä ja kerro lyhyesti, miten se tuki työskentelyäsi.
+- [MDN: Kellonaikojen muotoilu – toLocaleTimeString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString)
+- [MDN: Ajastin – setInterval()](https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval)
+- [MDN: Tekstin korvaaminen – replace()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace)
+- [MDN: Olion ominaisuuksien käsittely](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors)
+- [MDN: OR-operaattori ja vara-arvot](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR)
+- [Digitraffic API](https://www.digitraffic.fi/en/railway-traffic/)
 
-- [Lähteen tai tutoriaalin nimi](https://example.com/)
-- [Kuvalähde](https://example.com/)
-- Käytetty tekoälytyökalu: ...
-  - Miten työkalua käytettiin: ...
+- Käytetty ChatGPT, Gemini ja GitHub CoPilot tekoälyjä
+  - Tekoälyt auttoi toteutustapojen pohtimisessa, koodin toiminnan selittämisessä ja virheiden selvittämisessä. Ehdotettuja ratkaisuja ja koodia sovellettiin Junalähdöt sovellukseen. Apua käytettiin erityisesti Javascriptissä kellonajan hakemiseen ja sivun automaattiseen päivitykseen minuutin välein.Tavoitteena oli saada vaikeisiin kohtiin ymmärrettäviä ohjeita ja saada sovellukseen tärkeät ominaisuudet.
 
   ## Lisenssi
 
