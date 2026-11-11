@@ -1,20 +1,34 @@
-// Elementtien haku DOM-puusta
+// Elementtien haku
 const asema = document.getElementById("station-select");
 const nappi = document.getElementById("search-btn");
 const päivitetty = document.getElementById("updated-time");
 const taulukko = document.getElementById("timetable-body");
 
-// Sanakirja asemien kokonaisille nimille (esim. asemat["LH"] = "Lahti")
+// Asemien nimet asemakoodeittain, esimerkiksi LH = Lahti
 let asemat = {};
 
-// Haetaan asemien nimet muistiin heti sivun latautuessa
+// Viimeisimmän haun tunnus
+let hakuNumero = 0;
+
+// Viimeksi haetut lähdöt
+let viimeksiHaetutJunat = null;
+let viimeksiValittuAsema = null;
+
+// Haetaan asemien nimet muistiin
 haeAsemat();
 
 // Napin klikkaustoiminto
-nappi.addEventListener("click", function () {
+nappi.addEventListener("click", haeLähdöt);
+
+// Lähtöjen haku napista ja automaattisesti
+function haeLähdöt() {
   const valittuAsema = asema.value;
 
-  // Hakee Digitraffic API:sta valitun aseman junat napin klikkauksen jälkeen
+  // Uuden haun tunnus
+  hakuNumero++;
+  const tämänHaunNumero = hakuNumero;
+
+  // Hakee Digitraffic API:sta valitun aseman junat
   const osoite =
     "https://rata.digitraffic.fi/api/v1/live-trains/station/" +
     valittuAsema +
@@ -24,16 +38,27 @@ nappi.addEventListener("click", function () {
 
   päivitetty.textContent = "Haetaan lähtöjä...";
   taulukko.innerHTML = "";
+  viimeksiHaetutJunat = null;
+  viimeksiValittuAsema = null;
 
   const xmlhttp = new XMLHttpRequest();
   xmlhttp.open("GET", osoite, true);
 
   xmlhttp.onload = function () {
+    // Vanhan haun vastauksen ohittaminen
+    if (tämänHaunNumero !== hakuNumero) {
+      return;
+    }
+
     if (xmlhttp.status === 200) {
       // Saadun JSON-datan käsittely
       const junat = JSON.parse(xmlhttp.responseText);
 
       console.log("Haetut junat:", junat);
+
+      // Jos asemien nimet saapuvat myöhemmin, taulukko voidaan päivittää
+      viimeksiHaetutJunat = junat;
+      viimeksiValittuAsema = valittuAsema;
 
       // Annetaan funktiolle myös valittu asema
       näytäLähdöt(junat, valittuAsema);
@@ -55,11 +80,16 @@ nappi.addEventListener("click", function () {
 
   // Virheviesti jos ei yhteyttä
   xmlhttp.onerror = function () {
+    // Vanhan haun vastauksen ohittaminen
+    if (tämänHaunNumero !== hakuNumero) {
+      return;
+    }
+
     päivitetty.textContent = "Haku epäonnistui (verkkovirhe).";
   };
 
   xmlhttp.send();
-});
+}
 
 // Haettujen junien tunnukset + lähtöajat taulukossa
 function näytäLähdöt(junat, asemaKoodi) {
@@ -89,7 +119,7 @@ function näytäLähdöt(junat, asemaKoodi) {
         tunnus = juna.commuterLineID;
       }
 
-      // Määränpään haku (Junan reitin viimeinen asema)
+      // Määränpään haku
       const vikaPysähdys = juna.timeTableRows[juna.timeTableRows.length - 1];
       const määränpääKoodi = vikaPysähdys.stationShortCode;
       const määränpääNimi = asemat[määränpääKoodi] || määränpääKoodi;
@@ -106,7 +136,7 @@ function näytäLähdöt(junat, asemaKoodi) {
       // Solu 2: Määränpää (koko nimi)
       const määränpääSolu = rivi.insertCell(2);
       määränpääSolu.textContent = määränpääNimi;
-      määränpääSolu.className = "destination";
+      määränpääSolu.classList.add("destination");
 
       // Solu 3: Raide
       const raide = lähtö.commercialTrack || "–";
@@ -120,7 +150,7 @@ function etsiLähtö(juna, asemaKoodi) {
   for (let i = 0; i < juna.timeTableRows.length; i++) {
     const pysähdys = juna.timeTableRows[i];
 
-    // Etsitään valitulta asemalta lähtö, joka on vielä tulossa ja jota ei ole peruttu.
+    // Etsitään valitulta asemalta lähtö
     if (
       pysähdys.stationShortCode === asemaKoodi &&
       pysähdys.type === "DEPARTURE" &&
@@ -169,15 +199,27 @@ function haeAsemat() {
     if (xmlhttp.status === 200) {
       const asemalista = JSON.parse(xmlhttp.responseText);
 
-      // Tallennetaan asemien nimipari (koodi -> nimi)
+      // Tallennetaan asemien nimipari
       for (let i = 0; i < asemalista.length; i++) {
         const asemaObj = asemalista[i];
-        // Poistetaan " asema" nimestä siistiyden vuoksi (esim. "Lahti asema" -> "Lahti")
+        // Poistetaan API:n nimestä " asema", esim. "Helsinki asema" -> "Helsinki"
         const nimi = asemaObj.stationName.replace(" asema", "");
         asemat[asemaObj.stationShortCode] = nimi;
+      }
+
+      // Päivitetään määränpäiden nimet
+      if (viimeksiHaetutJunat !== null) {
+        näytäLähdöt(viimeksiHaetutJunat, viimeksiValittuAsema);
       }
     }
   };
 
   xmlhttp.send();
 }
+
+// Haetaan lähdöt heti sivun avautuessa
+haeLähdöt();
+
+// Haetaan valitun aseman lähdöt uudelleen minuutin välein
+// Ajastimen ohje: https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval
+setInterval(haeLähdöt, 60000);
