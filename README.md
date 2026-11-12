@@ -29,14 +29,16 @@ Junalähdöt sovellus projektin ideana on päivittyvä taulukko, joka hakee Digi
 
 ## Teknologiat
 
-- HTML – sivun rakenne
-  - Sovellus on rakennettu pitkälti taulukon pohjalle. Kaikki sovelluksen oleelliset tiedot löytyvät taulukon soluista
+## Teknologiat
 
-- CSS – ulkoasu ja asettelu
-  - CSS tyylit ja sovelluksen asettelu on määritetty
+### HTML – sivun rakenne
+HTML muodostaa sivun rakenteen: aseman valinnan, hakupainikkeen ja lähtötaulukon. Taulukossa näytetään junan lähtöaika, tunnus, määränpää ja raide.
 
-- JavaScript – toiminnallisuus, DOM-skriptaus ja lomakkeiden validointi
-  - Javascript projektin pääosassa, ilman sitä ei olisi minkäänlaista toiminnallisuutta
+### CSS – ulkoasu ja asettelu
+CSS määrittää sivun värit, fontit, välit ja taulukon ulkoasun. Responsiivinen asettelu mukauttaa näkymää puhelimelle ja suuremmalle inforuudulle.
+
+### JavaScript – toiminnallisuus ja DOM-skriptaus
+JavaScript hakee valitun aseman junatiedot Digitrafficin REST API:sta ja järjestää lähdöt aikajärjestykseen. Tiedot lisätään taulukkoon DOM-skriptauksen avulla. JavaScript hoitaa myös automaattipäivityksen minuutin välein, päivitysajan näyttämisen ja hakujen virheilmoitukset.
 
 ## Sovelluksen käyttö
 
@@ -98,7 +100,7 @@ Yhteistyö sujui ongelmitta. Sovittiin, kuka tekee mitäkin. Olimme kokoajan yht
 - [Digitraffic API](https://www.digitraffic.fi/en/railway-traffic/)
 
 - Käytetty ChatGPT, Gemini ja GitHub CoPilot tekoälyjä
-  - Tekoälyt auttoi toteutustapojen pohtimisessa, koodin toiminnan selittämisessä ja virheiden selvittämisessä. Ehdotettuja ratkaisuja ja koodia sovellettiin Junalähdöt sovellukseen. Apua käytettiin erityisesti Javascriptissä kellonajan hakemiseen ja sivun automaattiseen päivitykseen minuutin välein.Tavoitteena oli saada vaikeisiin kohtiin ymmärrettäviä ohjeita ja saada sovellukseen tärkeät ominaisuudet.
+  - Tekoälyt auttoi toteutustapojen pohtimisessa, koodin toiminnan selittämisessä ja virheiden selvittämisessä. Ehdotettuja ratkaisuja ja koodia sovellettiin Junalähdöt sovellukseen. Apua käytettiin erityisesti Javascriptissä kellonajan hakemiseen ja sivun automaattiseen päivitykseen minuutin välein. Tavoitteena oli saada vaikeisiin kohtiin ymmärrettäviä ohjeita ja saada sovellukseen tärkeät ominaisuudet.
 
   ## Lisenssi
 
