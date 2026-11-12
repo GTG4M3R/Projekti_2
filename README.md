@@ -71,11 +71,13 @@ Työn jakautuminen ja yhteistyö.
   - Rautalankamallin suunnittelu
   - JavaSript: kello, "Näytä lähdöt" napin toiminnallisuus, juna tunnusten ja lähtöaikojen haku Digitrafic API:sta
   - README.md pitkälti
+  - Käytetty aika tunteina n.16h
 
 - Tekijä 2: Emil Salmenkylä
   - Index html ja CSS aloitus rautalankamallin perusteella
   - Määränpäät ja raiteiden haku Digitrafic API:sta
   - Automaattinen sivun päivitys minuutin välein
+  - Käytetty aika tunteina n.13h
 
 Yhteistyö sujui ongelmitta. Sovittiin, kuka tekee mitäkin. Olimme kokoajan yhteydessä toisiin Discordin välityksellä, vaikka sovimme työnjaon. Kysyimme toisen apua ja mielipidettä lähes aina ennen commit. Kommunikointi auttoi myös siinä, etteivät molemmat olleet muokkaamassa samaa tiedostoa samaan aikaan.
 
