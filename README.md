@@ -99,8 +99,8 @@ Yhteistyö sujui ongelmitta. Sovittiin, kuka tekee mitäkin. Olimme kokoajan yht
 - [MDN: OR-operaattori ja vara-arvot](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR)
 - [Digitraffic API](https://www.digitraffic.fi/en/railway-traffic/)
 
-- Käytetty ChatGPT, Gemini ja GitHub CoPilot tekoälyjä
-  - Tekoälyt auttoi toteutustapojen pohtimisessa, koodin toiminnan selittämisessä ja virheiden selvittämisessä. Ehdotettuja ratkaisuja ja koodia sovellettiin Junalähdöt sovellukseen. Apua käytettiin erityisesti Javascriptissä kellonajan hakemiseen ja sivun automaattiseen päivitykseen minuutin välein. Tavoitteena oli saada vaikeisiin kohtiin ymmärrettäviä ohjeita ja saada sovellukseen tärkeät ominaisuudet.
+### Tekoälyn käyttö
+- Projektissa käytettiin ChatGPT, Gemini ja GitHub Copiloti tekoälyjä toteutustapojen pohtimiseen, koodin toiminnan ymmärtämiseen ja virheiden selvittämiseen. Apua pyydettiin erityisesti JavaScriptin API-hakuihin, kellonaikojen käsittelyyn ja automaattipäivitykseen. Tavoitteena oli saada vaikeisiin kohtiin ymmärrettäviä ohjeita, joita pystyttiin soveltamaan projektissa.
 
   ## Lisenssi
 
